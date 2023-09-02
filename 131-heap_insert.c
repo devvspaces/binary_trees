@@ -2,17 +2,17 @@
 
 size_t cal_tree_size(const binary_tree_t *tree);
 heap_t *heap_insert(heap_t **root, int value);
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
+binary_tree_t *b_tree_node(binary_tree_t *parent, int value);
 
 /**
- * binary_tree_node - Creates a binary tree node.
+ * b_tree_node - Creates a binary tree node.
  * @parent: A pointer to the parent of the node to create.
  * @value: The value to put in the new node.
  *
  * Return: If an error occurs - NULL.
  *         Otherwise - a pointer to the new node.
  */
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
+binary_tree_t *b_tree_node(binary_tree_t *parent, int value)
 {
 	binary_tree_t *new;
 
@@ -44,7 +44,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	if (!root)
 		return (NULL);
 	if (!(*root))
-		return (*root = binary_tree_node(NULL, value));
+		return (*root = b_tree_node(NULL, value));
 
 	tree = *root;
 	size = cal_tree_size(tree);
@@ -55,7 +55,7 @@ heap_t *heap_insert(heap_t **root, int value)
 	for (bit = 1 << (level - 1); bit != 1; bit >>= 1)
 		tree = leaves & bit ? tree->right : tree->left;
 
-	new = binary_tree_node(tree, value);
+	new = b_tree_node(tree, value);
 	leaves & 1 ? (tree->right = new) : (tree->left = new);
 
 	flip = new;
